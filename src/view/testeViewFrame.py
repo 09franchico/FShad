@@ -1,4 +1,7 @@
 import customtkinter
+from src.view import inputViewFrame
+from src.view import logViewFrame
+from src.view import terminalViewFrame
 
 
 class TestViewFrame(customtkinter.CTkFrame):
@@ -6,14 +9,19 @@ class TestViewFrame(customtkinter.CTkFrame):
         super().__init__(master, **kwargs)
         
         
-        # self.grid_rowconfigure(0, weight=1)  # configure grid system
-        # self.grid_columnconfigure(0, weight=1)
-    
-        # self.back_button = customtkinter.CTkButton(self, text="Back", width=200)
-        # self.back_button.grid(row=1, column=0, padx=30, pady=(15, 15), sticky="nsew")
+        self.grid_rowconfigure(0, weight=1)  # configure grid system
+        self.grid_columnconfigure(0, weight=1)
         
+        # self.terminalFrame = terminalViewFrame.TerminalViewFrame(master=self)
+        # self.terminalFrame.grid(row=0, column=0, padx=5, pady=5, sticky="new")
+        
+        # self.inputFrame = inputViewFrame.InputViewFrame(master=self)
+        # self.inputFrame.grid(row=1, column=1, padx=5, pady=5,sticky="nswe")
     
-    # def back_event(self):
-    #     print("Voltar")
-        #self.main_frame.grid_forget()  # remove main frame
-        #self.login_frame.grid(row=0, column=0, sticky="ns")  # show login frame
+        
+        # self.logFrame = logViewFrame.LogViewFrame(master=self)
+        # self.logFrame.grid(row=1, column=2, padx=5, pady=5,sticky="nsew")
+        
+        
+        
+        

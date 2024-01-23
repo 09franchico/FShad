@@ -29,7 +29,6 @@ class App(customtkinter.CTk):
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image)
         self.bg_image_label.grid(row=0, column=0)
         
-        
         self.comunicacao_arduino_instance = comunicaoArduino.ComunicacaoArduino("COM5")
         
         #LoginFrame    

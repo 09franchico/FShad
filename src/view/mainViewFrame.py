@@ -30,6 +30,7 @@ class MainViewFrame(customtkinter.CTkFrame):
         self.frameNovo_test.grid(row=0, column=1, padx=(10,30), pady=(15, 5),sticky="wnse")
         
         
+        
         #FrameFooter
         self.frameFooter = footerViewFrame.FooterViewFrame(master=self)
         self.frameFooter.grid(row=1, column=0, padx=30, pady=(5, 15),stick="wse",columnspan=2)

@@ -10,6 +10,7 @@ class LoginViewFrame(customtkinter.CTkFrame):
         super().__init__(master, **kwargs)
         
         
+        
         self.login_label = customtkinter.CTkLabel(
             self, text="Login FShd",
             font=customtkinter.CTkFont(size=20, weight="bold"))

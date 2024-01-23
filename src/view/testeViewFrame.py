@@ -1,6 +1,8 @@
 import customtkinter
 from src.controller import comunicaoArduino
 from src.view import configViewFrame
+import time
+import threading
 
 
 class TestViewFrame(customtkinter.CTkFrame):
@@ -10,7 +12,7 @@ class TestViewFrame(customtkinter.CTkFrame):
                  **kwargs):
         super().__init__(master, **kwargs)
         
-        self.comunica_arduino = comunicacaoArduino
+        self.comunica_arduino = comunicacaoArduino    
         
         self.button = customtkinter.CTkButton(self,text="Open conexao",command=self.button_teste)
         self.button.grid(row=0, column=0, padx=(30,10), pady=(15, 5))
@@ -28,8 +30,11 @@ class TestViewFrame(customtkinter.CTkFrame):
         self.buttonFechar.grid(row=4, column=0, padx=(30,10), pady=(15, 5))
         
         
-        self.textbox = customtkinter.CTkTextbox(master=self, width=600, corner_radius=0)
-        self.textbox.grid(row=5, column=0, sticky="nsew")
+        self.textbox = customtkinter.CTkTextbox(master=self, width=300, corner_radius=0,text_color="green")
+        self.textbox.grid(row=5, column=0,padx=(20,10), sticky="nsew")
+        
+        self.textbox2 = customtkinter.CTkTextbox(master=self, width=200, corner_radius=0,text_color="green")
+        self.textbox2.grid(row=5, column=1,padx=(20,0) ,sticky="nsew")
         
         
         
@@ -37,14 +42,29 @@ class TestViewFrame(customtkinter.CTkFrame):
         self.comunica_arduino.open_connection()
         
     def button_env(self):
-        self.comunica_arduino.send_data(self.input.get())
-        self.textbox.insert("0.0", self.comunica_arduino.read_data())
+        
+        file = open('config/teste.txt', 'r', encoding="UTF-8")  # Manipulação de arquivo
+        txts = file.readlines()
+        file.close()
+        
+        # Criar uma thread para processar as linhas
+        thread = threading.Thread(target=self.processar_linhas, args=(txts,))
+        thread.start()
         
     def button_rec(self):
         self.comunica_arduino.read_data()
         
     def button_fechar(self):
         self.comunica_arduino.close_connection()
+        
+        
+    def processar_linhas(self, txts):
+        for idx, t in enumerate(txts):
+            position = f"{idx + 1}.0"
+            self.comunica_arduino.send_data(t)
+            self.textbox.insert(position, t)
+            self.textbox2.insert("0.0",self.comunica_arduino.read_data())
+            time.sleep(5)
         
         
         

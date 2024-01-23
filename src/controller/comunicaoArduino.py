@@ -42,6 +42,7 @@ class ComunicacaoArduino:
                 return data
             except serial.SerialException as e:
                 print(f"Erro ao receber dados de {self.port}: {e}")
+                return "error"
         else:
             print("Conexão não aberta. Não é possível receber dados.")
             return "Conexão não aberta. Não é possível receber dados."

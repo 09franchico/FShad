@@ -2,6 +2,7 @@ import customtkinter
 from PIL import Image
 import os
 from src.view import loginViewFrame
+from src.controller import comunicaoArduino
 
 customtkinter.set_appearance_mode("dark")
 
@@ -28,8 +29,14 @@ class App(customtkinter.CTk):
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image)
         self.bg_image_label.grid(row=0, column=0)
         
+        
+        self.comunicacao_arduino_instance = comunicaoArduino.ComunicacaoArduino("COM5")
+        
         #LoginFrame    
-        self.login_frame = loginViewFrame.LoginViewFrame(master=self)
+        self.login_frame = loginViewFrame.LoginViewFrame(
+            master = self,
+            comunicacaoArduino = self.comunicacao_arduino_instance)
+        
         self.login_frame.grid(row=0, column=0,sticky="ns")
 
 

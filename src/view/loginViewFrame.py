@@ -1,14 +1,14 @@
 import customtkinter
 from src.view import mainViewFrame
+from src.controller import comunicaoArduino
 
 
 class LoginViewFrame(customtkinter.CTkFrame):
-    def __init__(self, master, **kwargs):
+    
+    
+    def __init__(self, master,comunicacaoArduino:comunicaoArduino.ComunicacaoArduino, **kwargs):
         super().__init__(master, **kwargs)
         
-        # create login frame
-        # self.login_frame = customtkinter.CTkFrame(self, corner_radius=0,)
-        # self.login_frame.grid(row=0, column=0, sticky="ns")
         
         self.login_label = customtkinter.CTkLabel(
             self, text="Login FShd",
@@ -26,7 +26,10 @@ class LoginViewFrame(customtkinter.CTkFrame):
         self.login_button.grid(row=3, column=0, padx=30, pady=(15, 15))
         
         #Main Frame
-        self.main_frame = mainViewFrame.MainViewFrame(self.master)
+        self.main_frame = mainViewFrame.MainViewFrame(
+            self.master,
+            comunicacaoArduino
+            )
         
     def login_event(self):
         print("Login pressed - username:", self.username_entry.get(), "password:", self.password_entry.get())

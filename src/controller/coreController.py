@@ -1,4 +1,6 @@
 from src.controller import comunicaoArduino
+import time
+import threading
 
 class Controller:
     
@@ -14,10 +16,30 @@ class Controller:
     
     def enviar_dado_arduino(self,data):
         self.arduino.send_data(data)
-        print(self.view.main_frame.frameNovo_test.textbox.insert("0.0",self.arduino.read_data()))
+        # print(self.view.main_frame.frameNovo_test.textbox.insert("0.0",self.arduino.read_data()))
         
     def fechar_conexao(self):
         self.arduino.close_connection()
+        
+    def config_env(self):
+        
+        file = open('config/teste.txt', 'r', encoding="UTF-8")  # Manipulação de arquivo
+        txts = file.readlines()
+        file.close()
+        
+        # Criar uma thread para processar as linhas
+        thread = threading.Thread(target=self.processar_linhas, args=(txts,))
+        thread.start()
+        
+        
+    def processar_linhas(self, txts):
+        for idx, t in enumerate(txts):
+            position = f"{idx + 1}.0"
+            self.arduino.send_data(t)
+            self.view.main_frame.frameNovo_test.textbox.insert(position,t)
+            # self.textbox.insert(position, t)
+            # self.textbox2.insert("0.0",self.comunica_arduino.read_data())
+            time.sleep(5)
         
         
         

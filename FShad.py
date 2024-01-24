@@ -32,6 +32,10 @@ class App(customtkinter.CTk):
         
         self.comunicacao_arduino_instance = comunicaoArduino.ComunicacaoArduino("COM5")
         
+        #Model
+        
+        
+        
         #LoginFrame  View  
         self.login_frame = loginViewFrame.LoginViewFrame(
             master = self,

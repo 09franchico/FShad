@@ -32,7 +32,8 @@ class ConfigViewFrame(customtkinter.CTkFrame):
     
     def button_teste(self):
         if self.controller:
-            self.controller.enviar_dado_arduino(self.entry.get())
+            self.controller.config_env()
+            #self.controller.enviar_dado_arduino(self.entry.get())
         
     
     def conectar(self):
@@ -42,4 +43,6 @@ class ConfigViewFrame(customtkinter.CTkFrame):
     def button_fechar(self):
         if self.controller:
               self.controller.fechar_conexao()
+              
+    
         

@@ -25,7 +25,6 @@ class MainViewFrame(customtkinter.CTkFrame):
         #FrameTeste
         self.frameNovo_test = configViewFrame.ConfigViewFrame(
             master=self,
-            comunicacao_arduino=comunicacaoArduino
             )
         self.frameNovo_test.grid(row=0, column=1, padx=(10,30), pady=(15, 5),sticky="wnse")
         

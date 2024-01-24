@@ -6,9 +6,10 @@ from src.controller import comunicaoArduino
 class LoginViewFrame(customtkinter.CTkFrame):
     
     
-    def __init__(self, master,comunicacaoArduino:comunicaoArduino.ComunicacaoArduino, **kwargs):
+    def __init__(self, master,
+                 comunicacaoArduino:comunicaoArduino.ComunicacaoArduino, 
+                 **kwargs):
         super().__init__(master, **kwargs)
-        
         
         
         self.login_label = customtkinter.CTkLabel(

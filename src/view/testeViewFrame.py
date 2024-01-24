@@ -1,6 +1,6 @@
 import customtkinter
 from src.controller import comunicaoArduino
-from src.view import configViewFrame
+from src.controller import coreController
 import time
 import threading
 
@@ -36,10 +36,17 @@ class TestViewFrame(customtkinter.CTkFrame):
         self.textbox2 = customtkinter.CTkTextbox(master=self, width=200, corner_radius=0,text_color="green")
         self.textbox2.grid(row=5, column=1,padx=(20,0) ,sticky="nsew")
         
+        # definir o controlador
+        self.controller:coreController.Controller = None
+
+    def set_controller(self, controller):
+        self.controller = controller
         
         
     def button_teste(self):
         self.comunica_arduino.open_connection()
+        if self.controller:
+            self.controller.teste()
         
     def button_env(self):
         

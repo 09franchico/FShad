@@ -1,8 +1,3 @@
-cmdEnv
 a
 b
-cmdEnvd
-cmdEnvf
-g
-t
-cmdEnv
+c
